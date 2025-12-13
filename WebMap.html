@@ -677,7 +677,7 @@ button:hover,
   <label><input type="checkbox" id="chkATM" checked />  ATM Locations</label>
   <label><input type="checkbox" id="chkBank" checked />  Bank Locations</label>
   <label><input type="checkbox" id="chkCinema" checked />  Cinemas</label>
-  <label><input type="checkbox" id="chkEmbassy" checked />  Embassy</label>
+  <label><input type="checkbox" id="chkFuel" checked />  Fuel Stations</label>
   <label><input type="checkbox" id="chkHospital" checked />  Hospitals</label>
   <label><input type="checkbox" id="chkPharmacy" checked />  Pharmacies</label>
   <label><input type="checkbox" id="chkPolice" checked />  Police Stations</label>
@@ -699,15 +699,14 @@ button:hover,
   <div class="legend-item" data-layer="ATM">🟢 ATM Locations</div>
   <div class="legend-item" data-layer="Bank">🔵 Bank Locations</div>
   <div class="legend-item" data-layer="Cinema">🟠 Cinemas</div>
-  <div class="legend-item" data-layer="Embassy">🟡 Fuel Stations</div>
+  <div class="legend-item" data-layer="Fuel">🟡 Fuel Stations</div>
   <div class="legend-item" data-layer="Hospital">🔴 Hospitals</div>
   <div class="legend-item" data-layer="Pharmacy">🟣 Pharmacies</div>
   <div class="legend-item" data-layer="Police">🌸 Police Stations</div>
   <div class="legend-item" data-layer="School">⚪ Schools</div>
   <div class="legend-item" data-layer="Post">🟤 Post Offices</div>
   <div class="legend-item" data-layer="Library">🔘 Libraries</div>
-  <div class="legend-item" data-layer="SuperMarket">🟢 Super Markets</div>
-  <div class="legend-item" data-layer="University">🟡 Universities</div>
+</div>
 
 <div id="serviceCountBox">
   <div><strong>Mode:</strong> <span id="selectedModeDisplay">🚗 Driving</span></div>
@@ -749,15 +748,13 @@ button:hover,
       <option value="🟢 ATM Locations">🟢 ATM Locations</option>
       <option value="🔵 Bank Locations">🔵 Bank Locations</option>
       <option value="🟠 Cinemas">🟠 Cinemas</option>
-      <option value="🟡 Embassy">🟡 Embassy</option>
+      <option value="🟡 Fuel Stations">🟡 Fuel Stations</option>
       <option value="🔴 Hospitals">🔴 Hospitals</option>
       <option value="🟣 Pharmacies">🟣 Pharmacies</option>
       <option value="🌸 Police Stations">🌸 Police Stations</option>
       <option value="⚪ Schools">⚪ Schools</option>
       <option value="🟤 Post Offices">🟤 Post Offices</option>
       <option value="🔘 Libraries">🔘 Libraries</option>
-      <option value="🟢 Super Markets">🟢 Super Markets</option>
-      <option value="🔵 Universities">🔵 Universities</option>
     </select>
 
     
@@ -1016,21 +1013,16 @@ const googleStreets = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&
 
 
   const layersInfo = [
-  { name: 'ATM', id: 'chkATM', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/ATM.geojson', color: '#2ecc71' },
-  { name: 'Bank', id: 'chkBank', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/Bank.geojson', color: '#3498db' },
-  { name: 'Cinema', id: 'chkCinema', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/Cinema.geojson', color: '#e67e22' },
-  { name: 'College', id: 'chkCollege', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/College.geojson', color: '#f1c40f' },
-  { name: 'Hospital', id: 'chkHospital', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/Hospital.geojson', color: '#e74c3c' },
-  { name: 'Pharmacy', id: 'chkPharmacy', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/Pharmacy.geojson', color: '#9b59b6' },
-  { name: 'Police', id: 'chkPolice', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/police.geojson', color: '#FFB6C1' },
-  { name: 'School', id: 'chkSchool', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/school.geojson', color: '#ffffff' },
-  { name: 'Post', id: 'chkPost', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/post.geojson', color: '#8B4513' }, 
-  { name: 'Library', id: 'chkLibrary', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/library.geojson', color: '#6E7B8B' },
-  { name: 'SuperMarket', id: 'chkSuperMarket', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/supermarket.geojson', color: '#6E7B8B' },
-  { name: 'University', id: 'chkUniversity', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/universities.geojson', color: '#6E7B8B' },
-  { name: 'Embassy', id: 'chkEmbassy', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Jsons/embassy.geojson', color: '#6E7B8B' }
-
-  
+  { name: 'ATM', id: 'chkATM', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/ATM.geojson', color: '#2ecc71' },
+  { name: 'Bank', id: 'chkBank', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/Bank.geojson', color: '#3498db' },
+  { name: 'Cinema', id: 'chkCinema', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/Cinema.geojson', color: '#e67e22' },
+  { name: 'Fuel', id: 'chkFuel', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/Fuel.geojson', color: '#f1c40f' },
+  { name: 'Hospital', id: 'chkHospital', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/Hospital.geojson', color: '#e74c3c' },
+  { name: 'Pharmacy', id: 'chkPharmacy', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/Pharmacy.geojson', color: '#9b59b6' },
+  { name: 'Police', id: 'chkPolice', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/Police.geojson', color: '#FFB6C1' },
+  { name: 'School', id: 'chkSchool', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/School.geojson', color: '#ffffff' },
+  { name: 'Post', id: 'chkPost', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/Post.geojson', color: '#8B4513' }, 
+  { name: 'Library', id: 'chkLibrary', url: 'https://raw.githubusercontent.com/Sanjohn12/Geojson/main/GeoJson/Library.geojson', color: '#6E7B8B' }
 ];
 
   const overlayMaps = {};
@@ -1156,7 +1148,7 @@ document.querySelectorAll('.basemap-btns button').forEach(btn => {
   });
 
   
-  const apiKey = '5b3ce3597851110001cf6248aca8bc548cbb17d7525209d8e040a0b603f8f10ba4e7aa772150c1c0'; 
+  const apiKey = '5b3ce3597851110001cf624857441354c4b14c1994cb59adac44ffc4'; 
 
   document.getElementById('searchBar').addEventListener('keypress', async e => {
     if (e.key === 'Enter') {
