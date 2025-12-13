@@ -706,9 +706,9 @@ button:hover,
   <div class="legend-item" data-layer="College">🟡 College</div>
   <div class="legend-item" data-layer="Hospital">🔴 Hospital</div>
   <div class="legend-item" data-layer="Pharmacy">🟣 Pharmacy</div>
-  <div class="legend-item" data-layer="Police">🌸 Police</div>
+  <div class="legend-item" data-layer="Police Station">🌸 Police</div>
   <div class="legend-item" data-layer="School">⚪ School</div>
-  <div class="legend-item" data-layer="Post">🟤 Post</div>
+  <div class="legend-item" data-layer="Post Office">🟤 Post</div>
   <div class="legend-item" data-layer="Library">🔘 Library</div>
   <div class="legend-item" data-layer="SuperMarket">🟢 SuperMarket</div>
   <div class="legend-item" data-layer="University">🔵 University</div>
@@ -760,7 +760,7 @@ button:hover,
   <option value="🟣 Pharmacy">🟣 Pharmacy</option>
   <option value="🌸 Police">🌸 Police</option>
   <option value="⚪ School">⚪ School</option>
-  <option value="🟤 Post">🟤 Post</option>
+  <option value="🟤 Post Office">🟤 Post</option>
   <option value="🔘 Library">🔘 Library</option>
   <option value="🟢 SuperMarket">🟢 SuperMarket</option>
   <option value="🔵 University">🔵 University</option>
@@ -1031,10 +1031,10 @@ const googleStreets = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&
   { name: 'Pharmacy', id: 'chkPharmacy', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Pharmacy.geojson', color: '#9b59b6' },
   { name: 'Police', id: 'chkPolice', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Police.geojson', color: '#FFB6C1' },
   { name: 'School', id: 'chkSchool', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/School.geojson', color: '#ffffff' },
-  { name: 'Post', id: 'chkPost', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Postoffice.geojson', color: '#8B4513' }, 
+  { name: 'Post', id: 'chkPost', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Postoffice.geojson', color: 'rgb(139, 69, 19)' }, 
   { name: 'Library', id: 'chkLibrary', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Library.geojson', color: '#6E7B8B' },
-  { name: 'SuperMarket', id: 'chkSuperMarket', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Supermarket.geojson', color: '#6E7B8B' },
-  { name: 'University', id: 'chkUniversity', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/University.geojson', color: '#6E7B8B' }
+  { name: 'SuperMarket', id: 'chkSuperMarket', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Supermarket.geojson', color: '#00FF00' },
+  { name: 'University', id: 'chkUniversity', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/University.geojson', color: '#1E90FF' }
 ];
 
   const overlayMaps = {};
@@ -1604,5 +1604,6 @@ function showPopup() {
 
 </body>
 </html>
+
 
 
