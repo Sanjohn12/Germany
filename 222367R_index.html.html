@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  
+  <title>ServeTrack</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3293/3293420.png" type="image/png" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+      background: #000;
+      position: relative;
+    }
+
+    .background-3d {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      perspective: 1000px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+
+  .flip-box {
+  width: 90vw;      
+  max-width: 70rem; 
+  height: auto;     
+  aspect-ratio: 7 / 2; 
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  position: relative;
+  text-align: center;
+}
+
+.flip-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-weight: 1000;
+  color: #4cf3ff;
+  background-size: 200% auto;
+  text-shadow: 0 2px 8px rgba(81, 197, 255, 0.5);
+  letter-spacing: 1.5px;
+  font-family: 'Segoe UI', 'Poppins', 'Helvetica Neue', sans-serif;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  animation: none;
+}
+
+    .flip-face.back {
+      transform: rotateX(180deg);
+    }
+
+
+.water-button {
+  position: fixed; 
+  bottom: 50px;   
+  left: 50%;  
+  transform: translateX(-50%);
+  padding: 14px 36px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 242, 254, 0.1);
+  transition: all 0.3s ease;
+  z-index: 20;
+
+  box-shadow:
+    inset 0 0 10px rgba(0, 242, 254, 0.5),
+    0 0 20px rgba(0, 242, 254, 0.8),
+    0 0 30px rgba(0, 242, 254, 0.6);
+}
+
+
+.water-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, #00f2fe, #4facfe, #00f2fe);
+  border-radius: 50%;
+  animation: shimmer 3s infinite linear;
+  z-index: -2;
+  filter: blur(20px);
+}
+
+.water-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.water-button:active::after {
+  transform: translate(-50%, -50%) scale(1);
+  transition: 0s;
+}
+
+.water-button:hover {
+  border: 2px solid #00f2fe;
+  text-shadow: 0 0 10px #00f2fe;
+}
+
+@keyframes shimmer {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+    canvas#smoke-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 30;
+    }
+   .hidden {
+  margin: 0;
+  width: 10rem;
+  height: 5rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 0rem;
+  background-color: #000;
+  z-index: 30;
+   }
+
+  </style>
+</head>
+<body>
+
+  <iframe class="background-3d" src="https://my.spline.design/robotfollowcursorforlandingpage-5r6cxpMbndWVksaJBveSyhAL/" frameborder="0" allowfullscreen></iframe>
+
+  <div class="content">
+    <div class="flip-box" id="flipBox">
+      <div class="flip-face front" id="frontFace">Welcome to the City Planner</div>
+      <div class="flip-face back" id="backFace">Set a time</div>
+    </div>
+    
+  </div>
+<button class="water-button" id="waterBtn" onclick="openLocalPage()">Explore Now</button>
+
+  <canvas id="smoke-canvas"></canvas>
+ <div class="hidden"></div>
+  <script>
+
+    function openLocalPage() {
+      window.location.href = "222367R_WebMap.html.html";
+    }
+const messages = [
+  "🌇 Welcome to Accessibility Planner — Discover Equitable City Zones",
+  "🕒 Choose Your Travel Time to See How Far You Can Reach",
+  "🚶‍♀️🚴‍♂️🚗 Pick a Mode: Walking, Cycling, or Driving",
+  "🗺️ Click the Map to Reveal Your Reachable Neighborhood",
+  "📊 See How Many Essential Services Are Within Reach",
+  "📌 View Real Service Locations from OpenStreetMap Data",
+  "💡 Suggest New Services Where You Think They're Needed",
+  "🗣️ Comment on Services: Useful, Not Useful, or Potential",
+  "💬 Read What Residents Are Saying About These Services",
+  "📈 Help Improve Urban Planning Through Community Insights",
+  "🔄 Watch Accessibility Evolve as You Change Settings",
+  "🌍 Explore Spatial Equity in Urban Service Distribution"
+];
+
+
+
+
+    let index = 0;
+    let flipped = false;
+
+    const box = document.getElementById("flipBox");
+    const front = document.getElementById("frontFace");
+    const back = document.getElementById("backFace");
+
+    setInterval(() => {
+      index = (index + 1) % messages.length;
+      flipped = !flipped;
+
+      box.style.transform = `rotateX(${flipped ? 180 : 0}deg)`;
+
+      if (flipped) {
+        back.textContent = messages[index];
+      } else {
+        front.textContent = messages[index];
+      }
+    }, 1700);
+
+    
+    const canvas = document.getElementById("smoke-canvas");
+    const ctx = canvas.getContext("2d");
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const particles = [];
+
+    const colors = [
+      '255, 0, 0',      
+      '255, 165, 0',    
+      '255, 255, 0',    
+      '0, 255, 0',      
+      '0, 255, 255',    
+      '0, 0, 255',      
+      '255, 0, 255',    
+    ];
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = Math.random() * 8 + 4;
+        this.opacity = 1;
+        this.dx = Math.random() * 2 - 1;
+        this.dy = Math.random() * -1.5 - 1;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      draw() {
+        let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 1.2);
+        gradient.addColorStop(0, `rgba(${this.color}, ${Math.min(this.opacity * 1.2, 1)})`);
+        gradient.addColorStop(1, `rgba(${this.color}, 0)`);
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      update() {
+        this.x += this.dx;
+        this.y += this.dy;
+        this.opacity -= 0.01;
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.update();
+        p.draw();
+        if (p.opacity <= 0) particles.splice(i, 1);
+      }
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+ 
+    const button = document.getElementById('waterBtn');
+
+    button.addEventListener('mousemove', (e) => {
+      for (let i = 0; i < 3; i++) {
+        particles.push(new Particle(e.clientX, e.clientY));
+      }
+    });
+
+
+    window.addEventListener("resize", () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    });
+  </script>
+
+</body>
+</html>
