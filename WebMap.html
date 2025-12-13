@@ -706,9 +706,9 @@ button:hover,
   <div class="legend-item" data-layer="College">🟡 College</div>
   <div class="legend-item" data-layer="Hospital">🔴 Hospital</div>
   <div class="legend-item" data-layer="Pharmacy">🟣 Pharmacy</div>
-  <div class="legend-item" data-layer="Police Station">🌸 Police</div>
+  <div class="legend-item" data-layer="Police Station">🌸 Police Station</div>
   <div class="legend-item" data-layer="School">⚪ School</div>
-  <div class="legend-item" data-layer="Post Office">🟤 Post</div>
+  <div class="legend-item" data-layer="Post Office">🟤 Post Office</div>
   <div class="legend-item" data-layer="Library">🔘 Library</div>
   <div class="legend-item" data-layer="SuperMarket">🟢 SuperMarket</div>
   <div class="legend-item" data-layer="University">🔵 University</div>
@@ -758,9 +758,9 @@ button:hover,
   <option value="🟡 College">🟡 College</option>
   <option value="🔴 Hospital">🔴 Hospital</option>
   <option value="🟣 Pharmacy">🟣 Pharmacy</option>
-  <option value="🌸 Police">🌸 Police</option>
+  <option value="🌸 Police">🌸 Police Station</option>
   <option value="⚪ School">⚪ School</option>
-  <option value="🟤 Post Office">🟤 Post</option>
+  <option value="🟤 Post Office">🟤 Post Office</option>
   <option value="🔘 Library">🔘 Library</option>
   <option value="🟢 SuperMarket">🟢 SuperMarket</option>
   <option value="🔵 University">🔵 University</option>
@@ -1334,8 +1334,8 @@ function displayCounts(counts, areaKm2, perimeterKm) {
 
   for (let [service, count] of Object.entries(counts)) {
     const emoji = {
-      ATM: "🟢", Bank: "🔵", Cinema: "🟠", Fuel: "🟡",
-      Hospital: "🔴", Pharmacy: "🟣", Police: "🌸", School: "⚪", Library: "🔘", Post: "🟤"
+      ATM: "🟢", Bank: "🔵", Cinema: "🟠", College: "🟡",
+      Hospital: "🔴", Pharmacy: "🟣", Police : "🌸", School: "⚪", Library: "🔘", Post: "🟤"
     }[service] || "🔹";
     container.innerHTML += `${emoji} ${service}: ${count}<br>`;
   }
@@ -1604,6 +1604,7 @@ function showPopup() {
 
 </body>
 </html>
+
 
 
 
