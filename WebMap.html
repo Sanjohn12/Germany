@@ -1335,7 +1335,7 @@ function displayCounts(counts, areaKm2, perimeterKm) {
   for (let [service, count] of Object.entries(counts)) {
     const emoji = {
       ATM: "🟢", Bank: "🔵", Cinema: "🟠", College: "🟡",
-      Hospital: "🔴", Pharmacy: "🟣", Police Station : "🌸", School: "⚪", Library: "🔘", Post Office: "🟤", SuperMarket:"🟢",University:"🔵"
+      Hospital: "🔴", Pharmacy: "🟣", PoliceStation : "🌸", School: "⚪", Library: "🔘", PostOffice: "🟤", SuperMarket:"🟢",University:"🔵"
     }[service] || "🔹";
     container.innerHTML += `${emoji} ${service}: ${count}<br>`;
   }
@@ -1604,6 +1604,7 @@ function showPopup() {
 
 </body>
 </html>
+
 
 
 
