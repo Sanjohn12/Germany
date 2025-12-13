@@ -700,20 +700,19 @@ button:hover,
   </div>
 <div id="legend">
   <strong>Legend</strong><br>
-  <div class="legend-item" data-layer="ATM">🏧 ATM</div>
-  <div class="legend-item" data-layer="Bank">🏦 Bank</div>
-  <div class="legend-item" data-layer="Cinema">🎥 Cinema</div>
-  <div class="legend-item" data-layer="College">🎓 College</div>
-  <div class="legend-item" data-layer="Hospital">🏥 Hospital</div>
-  <div class="legend-item" data-layer="Pharmacy">🧴 Pharmacy</div>
-  <div class="legend-item" data-layer="Police">🚓 Police</div>
-  <div class="legend-item" data-layer="School">🏫 School</div>
-  <div class="legend-item" data-layer="Post">📮 Post</div>
-  <div class="legend-item" data-layer="Library">📚 Library</div>
-  <div class="legend-item" data-layer="SuperMarket">🛒 SuperMarket</div>
-  <div class="legend-item" data-layer="University">🎓 University</div>
+  <div class="legend-item" data-layer="ATM">🟢 ATM</div>
+  <div class="legend-item" data-layer="Bank">🔵 Bank</div>
+  <div class="legend-item" data-layer="Cinema">🟠 Cinema</div>
+  <div class="legend-item" data-layer="College">🟡 College</div>
+  <div class="legend-item" data-layer="Hospital">🔴 Hospital</div>
+  <div class="legend-item" data-layer="Pharmacy">🟣 Pharmacy</div>
+  <div class="legend-item" data-layer="Police">🌸 Police</div>
+  <div class="legend-item" data-layer="School">⚪ School</div>
+  <div class="legend-item" data-layer="Post">🟤 Post</div>
+  <div class="legend-item" data-layer="Library">🔘 Library</div>
+  <div class="legend-item" data-layer="SuperMarket">🟢 SuperMarket</div>
+  <div class="legend-item" data-layer="University">🔵 University</div>
 </div>
-
 
 
 <div id="serviceCountBox">
@@ -751,22 +750,21 @@ button:hover,
     <input type="text" id="userName" name="entry.903743841" placeholder="Vijay" required />
     
     <label for="serviceType">Select Missing Service</label>
-<select id="serviceType" name="entry.1368569100" required>
+    <select id="serviceType" name="entry.1368569100" required>
   <option value="">-- Choose Service --</option>
-  <option value="ATM">🏧 ATM</option>
-  <option value="Bank">🏦 Bank</option>
-  <option value="Cinema">🎥 Cinema</option>
-  <option value="College">🎓 College</option>
-  <option value="Hospital">🏥 Hospital</option>
-  <option value="Pharmacy">🧴 Pharmacy</option>
-  <option value="Police">🚓 Police</option>
-  <option value="School">🏫 School</option>
-  <option value="Post">📮 Post</option>
-  <option value="Library">📚 Library</option>
-  <option value="SuperMarket">🛒 SuperMarket</option>
-  <option value="University">🎓 University</option>
+  <option value="🟢 ATM">🟢 ATM</option>
+  <option value="🔵 Bank">🔵 Bank</option>
+  <option value="🟠 Cinema">🟠 Cinema</option>
+  <option value="🟡 College">🟡 College</option>
+  <option value="🔴 Hospital">🔴 Hospital</option>
+  <option value="🟣 Pharmacy">🟣 Pharmacy</option>
+  <option value="🌸 Police">🌸 Police</option>
+  <option value="⚪ School">⚪ School</option>
+  <option value="🟤 Post">🟤 Post</option>
+  <option value="🔘 Library">🔘 Library</option>
+  <option value="🟢 SuperMarket">🟢 SuperMarket</option>
+  <option value="🔵 University">🔵 University</option>
 </select>
-
 
 
     
@@ -1001,119 +999,109 @@ const googleStreets = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&
   
   
   const map = L.map('map', {
-    center: [52.51425191099425, 13.40412483664756],
+    center: [7.9271, 79.8912],
     zoom: 9,
     layers: [cartoDark],
     zoomControl: false,
   });
 
   
-function createGeoJsonLayer(url, name, style, popupProp) {
+  function createGeoJsonLayer(url, name, style, popupProp) {
     return fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            return L.geoJSON(data, {
-                onEachFeature: (feature, layer) => {
-                    layer.bindPopup(`<b>${name}</b><br>${feature.properties[popupProp] || ''}`);
-                },
-                pointToLayer: (feature, latlng) => {
-                    // Assign an emoji based on service type
-                    let iconEmoji = '❓';
-                    switch(name) {
-                        case 'ATM': iconEmoji = '💵'; break;
-                        case 'Bank': iconEmoji = '🏦'; break;
-                        case 'Cinema': iconEmoji = '🎬'; break;
-                        case 'College': iconEmoji = '🏛️'; break;
-                        case 'Hospital': iconEmoji = '🏥'; break;
-                        case 'Pharmacy': iconEmoji = '💊'; break;
-                        case 'Police': iconEmoji = '👮'; break;
-                        case 'School': iconEmoji = '🏫'; break;
-                        case 'Post': iconEmoji = '📮'; break;
-                        case 'Library': iconEmoji = '📚'; break;
-                        case 'SuperMarket': iconEmoji = '🛒'; break;
-                        case 'University': iconEmoji = '🎓'; break;
-                    }
-                    return L.marker(latlng, {
-                        icon: L.divIcon({
-                            html: iconEmoji,
-                            className: 'custom-div-icon',
-                            iconSize: [28, 28],
-                            popupAnchor: [0, -14]
-                        })
-                    });
-                }
-            });
+      .then(res => res.json())
+      .then(data => {
+        return L.geoJSON(data, {
+          onEachFeature: (feature, layer) => {
+            layer.bindPopup(feature.properties[popupProp] || name);
+          },
+          pointToLayer: (feature, latlng) => {
+            return L.circleMarker(latlng, style);
+          }
         });
-}
+      });
+  }
 
-// Layers information
-const layersInfo = [
-    { name: 'ATM', id: 'chkATM', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/ATM.geojson', color: '#2ecc71' },
-    { name: 'Bank', id: 'chkBank', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/Bank.geojson', color: '#3498db' },
-    { name: 'Cinema', id: 'chkCinema', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/Cinema.geojson', color: '#e67e22' },
-    { name: 'College', id: 'chkCollege', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/College.geojson', color: '#f1c40f' },
-    { name: 'Hospital', id: 'chkHospital', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/Hospital.geojson', color: '#e74c3c' },
-    { name: 'Pharmacy', id: 'chkPharmacy', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/Pharmacy.geojson', color: '#9b59b6' },
-    { name: 'Police', id: 'chkPolice', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/police.geojson', color: '#FFB6C1' },
-    { name: 'School', id: 'chkSchool', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/school.geojson', color: '#ffffff' },
-    { name: 'Post', id: 'chkPost', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/post.geojson', color: '#8B4513' },
-    { name: 'Library', id: 'chkLibrary', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/library.geojson', color: '#6E7B8B' },
-    { name: 'SuperMarket', id: 'chkSuperMarket', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/supermarket.geojson', color: '#6E7B8B' },
-    { name: 'University', id: 'chkUniversity', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/universities.geojson', color: '#6E7B8B' }
+
+  const layersInfo = [
+  { name: 'ATM', id: 'chkATM', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/ATM.geojson', color: '#2ecc71' },
+  { name: 'Bank', id: 'chkBank', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/Bank.geojson', color: '#3498db' },
+  { name: 'Cinema', id: 'chkCinema', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/Cinema.geojson', color: '#e67e22' },
+  { name: 'College', id: 'chkCollege', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/College.geojson', color: '#f1c40f' },
+  { name: 'Hospital', id: 'chkHospital', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/Hospital.geojson', color: '#e74c3c' },
+  { name: 'Pharmacy', id: 'chkPharmacy', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/Pharmacy.geojson', color: '#9b59b6' },
+  { name: 'Police', id: 'chkPolice', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/police.geojson', color: '#FFB6C1' },
+  { name: 'School', id: 'chkSchool', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/school.geojson', color: '#ffffff' },
+  { name: 'Post', id: 'chkPost', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/post.geojson', color: '#8B4513' }, 
+  { name: 'Library', id: 'chkLibrary', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/library.geojson', color: '#6E7B8B' },
+  { name: 'SuperMarket', id: 'chkSuperMarket', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/supermarket.geojson', color: '#6E7B8B' },
+  { name: 'University', id: 'chkUniversity', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/main/Jsons/universities.geojson', color: '#6E7B8B' }
 ];
 
-// Store loaded layers
-const loadedGeoJsonLayers = {};
-const overlayMaps = {};
-let defaultLayers = [];
+  const overlayMaps = {};
+  let defaultLayers = [];
 
-// Reset button functionality
 document.getElementById('resetBtn').addEventListener('click', () => {
-    if (isochroneLayer) map.removeLayer(isochroneLayer);
-    if (clickMarker) map.removeLayer(clickMarker);
-    if (userLocationMarker) {
-        map.removeLayer(userLocationMarker);
-        userLocationMarker = null; 
-    }
-    document.getElementById('coordsBox').innerText = '📍 Click a location';
-    document.getElementById('searchBar').value = '';
-    document.getElementById('selectedModeDisplay').textContent = '🚗 Driving';  
-    document.getElementById('selectedRangeDisplay').textContent = '15 minutes'; 
-    document.getElementById('serviceCounts').innerHTML = '';  
-    document.getElementById('reportFormContainer').style.display = 'none';
+  if (isochroneLayer) map.removeLayer(isochroneLayer);
+  if (clickMarker) map.removeLayer(clickMarker);
+  if (userLocationMarker) {
+    map.removeLayer(userLocationMarker);
+    userLocationMarker = null; 
+  }
+  document.getElementById('coordsBox').innerText = '📍 Click a location';
+  document.getElementById('searchBar').value = '';
+  document.getElementById('selectedModeDisplay').textContent = '🚗 Driving';  
+  document.getElementById('selectedRangeDisplay').textContent = '15 minutes'; 
+  document.getElementById('serviceCounts').innerHTML = '';  
+  document.getElementById('reportFormContainer').style.display = 'none';
+
 });
+const loadedGeoJsonLayers = {};  
 
-// Load a single layer
+
+
+
 async function loadLayer(info) {
-    const layer = await createGeoJsonLayer(info.url, info.name, {}, 'name');
-    loadedGeoJsonLayers[info.name] = layer;
-    map.addLayer(layer); // add by default
-    overlayMaps[`🏷️ ${info.name}`] = layer;
+  const layer = await createGeoJsonLayer(info.url, info.name, {
+    radius: 6,
+    fillColor: info.color,
+    color: info.color,
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+  }, 'name');
+  loadedGeoJsonLayers[info.name] = layer;
+  map.addLayer(layer);
+  overlayMaps[`🏷️ ${info.name}`] = layer;
 }
 
-// Lazy load and toggle via checkbox
+
 function lazyLoadAndToggleLayer(info) {
-    const checkbox = document.getElementById(info.id);
-    if (!checkbox) return;
+  const checkbox = document.getElementById(info.id);
+  if (!checkbox) return;
 
-    if (checkbox.checked) loadLayer(info);
+ 
+  if (checkbox.checked) {
+    loadLayer(info);
+  }
 
-    checkbox.addEventListener('change', async () => {
-        if (checkbox.checked) {
-            if (!loadedGeoJsonLayers[info.name]) {
-                await loadLayer(info);
-            } else {
-                map.addLayer(loadedGeoJsonLayers[info.name]);
-            }
-        } else {
-            const layer = loadedGeoJsonLayers[info.name];
-            if (layer) map.removeLayer(layer);
-        }
-    });
+  checkbox.addEventListener('change', async () => {
+    if (checkbox.checked) {
+      if (!loadedGeoJsonLayers[info.name]) {
+        await loadLayer(info); 
+      } else {
+        map.addLayer(loadedGeoJsonLayers[info.name]); 
+      }
+    } else {
+      const layer = loadedGeoJsonLayers[info.name];
+      if (layer) map.removeLayer(layer);
+    }
+  });
 }
 
-// Initialize all checkboxes
-layersInfo.forEach(info => lazyLoadAndToggleLayer(info));
+
+layersInfo.forEach(info => {
+  lazyLoadAndToggleLayer(info);
+});
 
 
 
@@ -1346,20 +1334,9 @@ function displayCounts(counts, areaKm2, perimeterKm) {
 
   for (let [service, count] of Object.entries(counts)) {
     const emoji = {
-      ATM: "🏧",
-      Bank: "🏦",
-      Cinema: "🎥",
-      Fuel: "⛽",          // added appropriate icon for Fuel
-      Hospital: "🏥",
-      Pharmacy: "🧴",
-      Police: "🚓",
-      School: "🏫",
-      Library: "📚",
-      Post: "📮",
-      SuperMarket: "🛒",
-      University: "🎓"
+      ATM: "🟢", Bank: "🔵", Cinema: "🟠", Fuel: "🟡",
+      Hospital: "🔴", Pharmacy: "🟣", Police: "🌸", School: "⚪", Library: "🔘", Post: "🟤"
     }[service] || "🔹";
-    
     container.innerHTML += `${emoji} ${service}: ${count}<br>`;
   }
 
@@ -1367,7 +1344,6 @@ function displayCounts(counts, areaKm2, perimeterKm) {
   container.innerHTML += `<b>Isochrone Area:</b> ${areaKm2} km²<br>`;
   container.innerHTML += `<b>Isochrone Perimeter:</b> ${perimeterKm} km<br>`;
 }
-
 
 
 function updateModeAndRangeDisplay() {
@@ -1627,5 +1603,3 @@ function showPopup() {
 
 </body>
 </html>
-
-
