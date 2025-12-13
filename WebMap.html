@@ -681,9 +681,9 @@ button:hover,
   <label><input type="checkbox" id="chkCollege" checked /> College</label>
   <label><input type="checkbox" id="chkHospital" checked /> Hospital</label>
   <label><input type="checkbox" id="chkPharmacy" checked /> Pharmacy</label>
-  <label><input type="checkbox" id="chkPolice" checked /> Police</label>
+  <label><input type="checkbox" id="chkPolice" checked /> Police Station</label>
   <label><input type="checkbox" id="chkSchool" checked /> School</label>
-  <label><input type="checkbox" id="chkPost" checked /> Post</label>
+  <label><input type="checkbox" id="chkPost" checked /> Post Office</label>
   <label><input type="checkbox" id="chkLibrary" checked /> Library</label>
   <label><input type="checkbox" id="chkSuperMarket" checked /> SuperMarket</label>
   <label><input type="checkbox" id="chkUniversity" checked /> University</label>
@@ -758,7 +758,7 @@ button:hover,
   <option value="🟡 College">🟡 College</option>
   <option value="🔴 Hospital">🔴 Hospital</option>
   <option value="🟣 Pharmacy">🟣 Pharmacy</option>
-  <option value="🌸 Police">🌸 Police Station</option>
+  <option value="🌸 Police Station">🌸 Police Station</option>
   <option value="⚪ School">⚪ School</option>
   <option value="🟤 Post Office">🟤 Post Office</option>
   <option value="🔘 Library">🔘 Library</option>
@@ -1029,9 +1029,9 @@ const googleStreets = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&
   { name: 'College', id: 'chkCollege', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/College.geojson', color: '#f1c40f' },
   { name: 'Hospital', id: 'chkHospital', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Hospital.geojson', color: '#e74c3c' },
   { name: 'Pharmacy', id: 'chkPharmacy', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Pharmacy.geojson', color: '#9b59b6' },
-  { name: 'Police', id: 'chkPolice', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Police.geojson', color: '#FFB6C1' },
+  { name: 'Police Station', id: 'chkPolice', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Police.geojson', color: '#FFB6C1' },
   { name: 'School', id: 'chkSchool', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/School.geojson', color: '#ffffff' },
-  { name: 'Post', id: 'chkPost', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Postoffice.geojson', color: 'rgb(139, 69, 19)' }, 
+  { name: 'Post Office', id: 'chkPost', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Postoffice.geojson', color: 'rgb(139, 69, 19)' }, 
   { name: 'Library', id: 'chkLibrary', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Library.geojson', color: '#6E7B8B' },
   { name: 'SuperMarket', id: 'chkSuperMarket', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/Supermarket.geojson', color: '#00FF00' },
   { name: 'University', id: 'chkUniversity', url: 'https://raw.githubusercontent.com/Sanjohn12/Germany/refs/heads/main/Com/University.geojson', color: '#1E90FF' }
@@ -1335,7 +1335,7 @@ function displayCounts(counts, areaKm2, perimeterKm) {
   for (let [service, count] of Object.entries(counts)) {
     const emoji = {
       ATM: "🟢", Bank: "🔵", Cinema: "🟠", College: "🟡",
-      Hospital: "🔴", Pharmacy: "🟣", Police : "🌸", School: "⚪", Library: "🔘", Post: "🟤"
+      Hospital: "🔴", Pharmacy: "🟣", PoliceStation : "🌸", School: "⚪", Library: "🔘", Postoffice: "🟤"
     }[service] || "🔹";
     container.innerHTML += `${emoji} ${service}: ${count}<br>`;
   }
@@ -1604,6 +1604,7 @@ function showPopup() {
 
 </body>
 </html>
+
 
 
 
