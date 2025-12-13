@@ -1001,7 +1001,7 @@ const googleStreets = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&
   
   
   const map = L.map('map', {
-    center: [7.9271, 79.8912],
+    center: [52.51425191099425, 13.40412483664756],
     zoom: 9,
     layers: [cartoDark],
     zoomControl: false,
@@ -1017,31 +1017,31 @@ function createGeoJsonLayer(url, name, style, popupProp) {
                     layer.bindPopup(`<b>${name}</b><br>${feature.properties[popupProp] || ''}`);
                 },
                 pointToLayer: (feature, latlng) => {
-    let iconEmoji = '❓';
-    switch(name) {
-        case 'ATM': iconEmoji = '💵'; break;
-        case 'Bank': iconEmoji = '🏦'; break;
-        case 'Cinema': iconEmoji = '🎬'; break;
-        case 'College': iconEmoji = '🏛️'; break;
-        case 'Hospital': iconEmoji = '🏥'; break;
-        case 'Pharmacy': iconEmoji = '💊'; break;
-        case 'Police': iconEmoji = '👮'; break;
-        case 'School': iconEmoji = '🏫'; break;
-        case 'Post': iconEmoji = '📮'; break;
-        case 'Library': iconEmoji = '📚'; break;
-        case 'SuperMarket': iconEmoji = '🛒'; break;
-        case 'University': iconEmoji = '🎓'; break;
-    }
-    return L.marker(latlng, {
-        icon: L.divIcon({
-            html: `<span style="font-size: 32px;">${iconEmoji}</span>`, // increase font size here
-            className: 'custom-div-icon',
-            iconSize: [40, 40],  // adjust overall size
-            popupAnchor: [0, -20]
-        })
-    });
-}
-
+                    // Assign an emoji based on service type
+                    let iconEmoji = '❓';
+                    switch(name) {
+                        case 'ATM': iconEmoji = '💵'; break;
+                        case 'Bank': iconEmoji = '🏦'; break;
+                        case 'Cinema': iconEmoji = '🎬'; break;
+                        case 'College': iconEmoji = '🏛️'; break;
+                        case 'Hospital': iconEmoji = '🏥'; break;
+                        case 'Pharmacy': iconEmoji = '💊'; break;
+                        case 'Police': iconEmoji = '👮'; break;
+                        case 'School': iconEmoji = '🏫'; break;
+                        case 'Post': iconEmoji = '📮'; break;
+                        case 'Library': iconEmoji = '📚'; break;
+                        case 'SuperMarket': iconEmoji = '🛒'; break;
+                        case 'University': iconEmoji = '🎓'; break;
+                    }
+                    return L.marker(latlng, {
+                        icon: L.divIcon({
+                            html: iconEmoji,
+                            className: 'custom-div-icon',
+                            iconSize: [28, 28],
+                            popupAnchor: [0, -14]
+                        })
+                    });
+                }
             });
         });
 }
@@ -1615,3 +1615,4 @@ function showPopup() {
 
 </body>
 </html>
+
