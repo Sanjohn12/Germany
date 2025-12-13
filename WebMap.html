@@ -1346,9 +1346,20 @@ function displayCounts(counts, areaKm2, perimeterKm) {
 
   for (let [service, count] of Object.entries(counts)) {
     const emoji = {
-      ATM: "🟢", Bank: "🔵", Cinema: "🟠", Fuel: "🟡",
-      Hospital: "🔴", Pharmacy: "🟣", Police: "🌸", School: "⚪", Library: "🔘", Post: "🟤"
+      ATM: "🏧",
+      Bank: "🏦",
+      Cinema: "🎥",
+      Fuel: "⛽",          // added appropriate icon for Fuel
+      Hospital: "🏥",
+      Pharmacy: "🧴",
+      Police: "🚓",
+      School: "🏫",
+      Library: "📚",
+      Post: "📮",
+      SuperMarket: "🛒",
+      University: "🎓"
     }[service] || "🔹";
+    
     container.innerHTML += `${emoji} ${service}: ${count}<br>`;
   }
 
@@ -1356,6 +1367,7 @@ function displayCounts(counts, areaKm2, perimeterKm) {
   container.innerHTML += `<b>Isochrone Area:</b> ${areaKm2} km²<br>`;
   container.innerHTML += `<b>Isochrone Perimeter:</b> ${perimeterKm} km<br>`;
 }
+
 
 
 function updateModeAndRangeDisplay() {
@@ -1615,4 +1627,5 @@ function showPopup() {
 
 </body>
 </html>
+
 
