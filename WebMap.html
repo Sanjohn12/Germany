@@ -740,17 +740,17 @@ button:hover,
   <h3>🛠️ Report Missing Service</h3>
 
   <form 
-    action="https://docs.google.com/forms/d/e/1FAIpQLScnD65unZO9KgMvoBM046LQCSAIsHgSjg71WQB5Gc6Q8w6ArQ/formResponse" 
+    action="https://docs.google.com/forms/d/e/1FAIpQLSdO553gvYrRZmJotCYH80nbjCxrwbdGNcyMUrS1-jIVa4iUFg/formResponse" 
     method="POST" 
     target="hidden_iframe" 
     onsubmit="showPopup();"
   >
     
     <label for="userName">Reporter Name</label>
-    <input type="text" id="userName" name="entry.903743841" placeholder="Vijay" required />
+    <input type="text" id="userName" name="entry.1101666611" placeholder="Vijay" required />
     
     <label for="serviceType">Select Missing Service</label>
-    <select id="serviceType" name="entry.1368569100" required>
+    <select id="serviceType" name="entry.329414616" required>
   <option value="">-- Choose Service --</option>
   <option value="🟢 ATM">🟢 ATM</option>
   <option value="🔵 Bank">🔵 Bank</option>
@@ -769,20 +769,20 @@ button:hover,
 
     
     <label for="latField">Latitude</label>
-    <input type="text" id="latField" name="entry.1093015021" readonly />
+    <input type="text" id="latField" name="entry.473164695" readonly />
 
     
     <label for="lngField">Longitude</label>
-    <input type="text" id="lngField" name="entry.690671791" readonly />
+    <input type="text" id="lngField" name="entry.1575159427" readonly />
 
    
 <label for="areaName">Service Area</label>
-<input type="text" id="areaName" name="entry.258777224" placeholder="Kalmunai" required />
+<input type="text" id="areaName" name="entry.1783076352" placeholder="Kalmunai" required />
 
 
    
     <label for="comment">Additional Comment</label>
-    <textarea id="comment" name="entry.92242434" placeholder="This Location Nedd This Service or This Location Have This Service Please Update"></textarea>
+    <textarea id="comment" name="entry.1220205150" placeholder="This Location Nedd This Service or This Location Have This Service Please Update"></textarea>
 
     
     <button type="submit" style="margin-top: 15px; background: linear-gradient(135deg, #00ffe1, #008cbe); color:#000000; padding:10px; border:none; border-radius:10px; cursor:pointer; width: 100%;">✅ Submit</button>
@@ -999,7 +999,7 @@ const googleStreets = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&
   
   
   const map = L.map('map', {
-    center: [52.522608471794115, 13.401378254582225],
+    center: [7.9271, 79.8912],
     zoom: 9,
     layers: [cartoDark],
     zoomControl: false,
@@ -1491,7 +1491,8 @@ document.getElementById('distanceInput').addEventListener('input', updateModeAnd
     showError("⚠️ Geolocation not supported by your browser.");
   }
 });
-const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT5Y3GXyanZrjIUDhra31v8WynS_deRs5V5Kf9WaPIArguuA6TwL2chYApjYb8FNSigb1Jo2-JaV1G8/pub?output=csv';
+const csvUrl = 'https://docs.google.com/spreadsheets/d/1MSDSaL2m-lstITggFZgfGPKKcKZXAoNGlqC9maP3SfQ/export?format=csv';
+
 
 let feedbackMarkers = [];
 
@@ -1603,4 +1604,3 @@ function showPopup() {
 
 </body>
 </html>
-
